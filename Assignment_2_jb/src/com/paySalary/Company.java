@@ -101,15 +101,11 @@ public class Company {
     }
 
     private void setEmployeeSalaries() {
-        Employee employee;
         double basic;
-        for (int i = this.employees.size() - 1; i >= 0; i--) {
-            employee = this.employees.get(i);
+        for (Employee employee : this.employees) {
             Grades salaryGrades = employee.getGrade();
             basic = this.getLowestSalary() + (Company.salaryIncrease * salaryGrades.number);
-            this.totalRequiredMonthlySalary += basic;
             employee.setSalary(basic + (basic * 0.2) + (basic * 0.15));
         }
     }
-
 }

@@ -1,7 +1,5 @@
 package com.paySalary;
 
-import java.util.ArrayList;
-
 enum Grades {
     GRADE_ONE(5),
     GRADE_TWO(4),
