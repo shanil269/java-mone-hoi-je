@@ -10,6 +10,8 @@ public class Company {
     private double totalRequiredMonthlySalary;
     private double totalPaidSalary;
     private static final double salaryIncrease = 5000.0;
+    private static final double medicalAllowance = 0.15;
+    private static final double houseAllowance = 0.2;
 
     public Company() {
         this.CompanyName = "BA";
@@ -102,10 +104,13 @@ public class Company {
 
     private void setEmployeeSalaries() {
         double basic;
+        double grossSalary;
         for (Employee employee : this.employees) {
             Grades salaryGrades = employee.getGrade();
-            basic = this.getLowestSalary() + (Company.salaryIncrease * salaryGrades.number);
-            employee.setSalary(basic + (basic * 0.2) + (basic * 0.15));
+            basic = (this.getLowestSalary() + (Company.salaryIncrease * salaryGrades.number));
+            grossSalary = basic + (basic * houseAllowance) + (basic * medicalAllowance);
+            this.totalRequiredMonthlySalary += grossSalary;
+            employee.setSalary(grossSalary);
         }
     }
 }
