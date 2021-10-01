@@ -107,7 +107,7 @@ public class Company {
         double grossSalary;
         for (Employee employee : this.employees) {
             Grades salaryGrades = employee.getGrade();
-            basic = (this.getLowestSalary() + (Company.salaryIncrease * salaryGrades.number));
+            basic = (this.getLowestSalary() + (salaryIncrease * salaryGrades.number));
             grossSalary = basic + (basic * houseAllowance) + (basic * medicalAllowance);
             this.totalRequiredMonthlySalary += grossSalary;
             employee.setSalary(grossSalary);

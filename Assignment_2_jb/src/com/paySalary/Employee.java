@@ -1,12 +1,7 @@
 package com.paySalary;
 
 enum Grades {
-    GRADE_ONE(5),
-    GRADE_TWO(4),
-    GRADE_THREE(3),
-    GRADE_FOUR(2),
-    GRADE_FIVE(1),
-    GRADE_SIX(0);
+    GRADE_ONE(5), GRADE_TWO(4), GRADE_THREE(3), GRADE_FOUR(2), GRADE_FIVE(1), GRADE_SIX(0);
     public final int number;
 
     Grades(int i) {
