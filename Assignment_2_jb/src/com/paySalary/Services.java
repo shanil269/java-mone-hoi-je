@@ -3,6 +3,7 @@ package com.paySalary;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Services {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Transfer balance to Add in Company Account: ");
-            double balance = scanner.nextDouble();
+            BigDecimal balance = scanner.nextBigDecimal();
             bankAccount.addBalance(balance);
         } catch (InputMismatchException inputException) {
             System.out.println("Not a valid input for transferring balance!");
@@ -23,7 +24,7 @@ public class Services {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Set lowest grade's basic salary: ");
-            double salary = scanner.nextDouble();
+            BigDecimal salary = scanner.nextBigDecimal();
             company.setLowestSalary(salary);
         } catch (InputMismatchException inputException) {
             System.out.println("Not a valid input as Salary!");
@@ -31,11 +32,12 @@ public class Services {
     }
 
     static void fundTransfer(Company company, BankAccount bankAccount) {
-        if (company.getTotalRequiredMonthlySalary() > bankAccount.getCurrentBalance()) {
+        int result = company.getTotalRequiredMonthlySalary().compareTo(bankAccount.getCurrentBalance());
+        if (result == 1) {
             System.out.println("Can't Transfer Fun, Insufficient Balance.");
         } else {
             bankAccount.withdrawBalance(company.getTotalRequiredMonthlySalary());
-            company.setTotalPaidSalary(company.getTotalPaidSalary() + company.getTotalRequiredMonthlySalary());
+            company.setTotalPaidSalary(company.getTotalPaidSalary().add(company.getTotalRequiredMonthlySalary()));
             for (Employee employee : company.getEmployees()) {
                 employee.getBankAccount().setCurrentBalance(employee.getSalary());
             }

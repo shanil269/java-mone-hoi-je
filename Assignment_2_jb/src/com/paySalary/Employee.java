@@ -1,5 +1,7 @@
 package com.paySalary;
 
+import java.math.BigDecimal;
+
 enum Grades {
     GRADE_ONE(5), GRADE_TWO(4), GRADE_THREE(3), GRADE_FOUR(2), GRADE_FIVE(1), GRADE_SIX(0);
     public final int number;
@@ -10,13 +12,14 @@ enum Grades {
 }
 
 public class Employee {
+
     private String name;
     private Grades grade;
     private String address;
-    private double salary;
+    private BigDecimal salary;
     private BankAccount bankAccount;
 
-    public Employee(String name, Grades grade, String address, double salary, BankAccount bankAccount) {
+    public Employee(String name, Grades grade, String address, BigDecimal salary, BankAccount bankAccount) {
         this.name = name;
         this.grade = grade;
         this.address = address;
@@ -56,11 +59,11 @@ public class Employee {
         this.bankAccount = bankAccount;
     }
 
-    public double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 }

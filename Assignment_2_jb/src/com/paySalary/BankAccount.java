@@ -1,17 +1,20 @@
 package com.paySalary;
 
+import java.math.BigDecimal;
+
 enum AccountType {
     SAVINGS, CURRENT
 }
 
 public class BankAccount {
+
     private AccountType accountType;
     private int accountNumber;
-    private double currentBalance;
+    private BigDecimal currentBalance;
     private String branchName;
 
     public BankAccount(AccountType accountType, int accountNumber,
-                       double currentBalance, String branchName) {
+                       BigDecimal currentBalance, String branchName) {
         this.accountType = accountType;
         this.accountNumber = accountNumber;
         this.currentBalance = currentBalance;
@@ -34,12 +37,12 @@ public class BankAccount {
         this.accountNumber = accountNumber;
     }
 
-    public double getCurrentBalance() {
+    public BigDecimal getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(double currentBalance) {
-        this.currentBalance += currentBalance;
+    public void setCurrentBalance(BigDecimal currentBalance) {
+        this.currentBalance = this.currentBalance.add(currentBalance);
     }
 
     public String getBranchName() {
@@ -50,11 +53,11 @@ public class BankAccount {
         this.branchName = branchName;
     }
 
-    public void addBalance(double balance) {
-        this.currentBalance += balance;
+    public void addBalance(BigDecimal balance) {
+        this.currentBalance = this.currentBalance.add(balance);
     }
 
-    public void withdrawBalance(double balance) {
-        this.currentBalance -= balance;
+    public void withdrawBalance(BigDecimal balance) {
+        this.currentBalance = this.currentBalance.subtract(balance);
     }
 }
